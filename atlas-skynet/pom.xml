@@ -34,10 +34,7 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-config</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-log4j2</artifactId>
-		</dependency>
+		
 		<dependency>
 			<groupId>com.atlas</groupId>
 			<artifactId>atlas-rivers</artifactId>

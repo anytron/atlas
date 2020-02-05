@@ -4,22 +4,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.atlas.client.feign.DemoFeignService;
+import com.atlas.client.feign.UserFeignService;
 
 @RestController
 public class DemoController {
 	
 	@Autowired
-	DemoFeignService demoFeignService;
+	UserFeignService userFeignService;
 	
 	@GetMapping("/getPort")
 	public String getPort() {
-		return demoFeignService.getServerPort();
+		return userFeignService.getServerPort();
 	}
 	
 	@GetMapping("/sayMyName")
 	public String sayMyName(String name) {
-		return demoFeignService.sayName(name);
+		return userFeignService.sayName(name);
 	}
 	
 }
