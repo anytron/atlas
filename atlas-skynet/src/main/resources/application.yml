@@ -1,0 +1,51 @@
+server:
+   port: 80
+   tomcat:
+      uri-encoding: UTF-8
+spring:
+  application:
+    name: atlas-skynet
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:9001/eureka/
+# 构建路由地址
+zuul:
+  #设置空 允许敏感信息通过 其他设置"Cookie", "Set-Cookie", "Authorization"
+  sensitive-headers: 
+  #路由前缀
+  prefix: /api
+  strip-prefix: true
+  #开启重试
+  retryable: true
+  routes:
+    atlas-consumer-client:
+      path: /atlas/**
+      serviceId: atlas-consumer-client
+    atlas-provider-user:
+      path: /provider-user/**
+      serviceId: atlas-provider-user
+  # 忽略某些路径不进行路由
+#  ignored-patterns: /**/admin/**
+ribbon:
+  # 该参数用来设置路由转发请求的时候，创建请求连接的超时时间。
+  ConnectTimeout: 500
+  # 该参数用来设置路由转发请求的超时时间。
+  ReadTimeout: 2000
+  # 最大自动重试次数
+  MaxAutoRetries: 3
+  # 最大自动重试下一个服务的次数
+  MaxAutoRetriesNextServer: 1
+# 该参数可以用来设置 API 网关中路由转发请求的 HystrixCommand 执行超时时间，单位为毫秒。
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutinMilliseconds: 5000
+          semaphore:
+            maxConcurrentRequests: 10
+          #隔离策略是SEMAPHORE（信号量）
+          strategy: SEMAPHORE
+      
