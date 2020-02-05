@@ -8,6 +8,8 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<artifactId>atlas-skynet</artifactId>
+	<description>网关服务</description>
+	
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
