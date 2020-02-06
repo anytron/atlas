@@ -37,5 +37,6 @@
 		<module>atlas-rivers</module>
 		<module>atlas-eureka-server</module>
 		<module>atlas-skynet</module>
+		<module>atlas-prism</module>
 	</modules>
 </project>

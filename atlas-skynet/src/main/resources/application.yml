@@ -5,10 +5,25 @@ server:
 spring:
   application:
     name: atlas-skynet
+  boot:
+    admin:
+      client:
+        # 这个URL地址是SBA Server的服务地址，你需要将你的应用注册到该地址上
+        url: http://localhost:9000
+        # 配置连接到监测管理平台的Security安全密码
+        username: admin
+        password: admin
+      
+# 在默认情况下大多数Actuator的端点并没有完全公开，这里我将所有端点都进行公开进行管理
+management.endpoints.web.exposure.include: "*"
+
 eureka:
   client:
     service-url:
       defaultZone: http://localhost:9001/eureka/
+  instance:
+    preferIpAddress : true
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
 # 构建路由地址
 zuul:
   #设置空 允许敏感信息通过 其他设置"Cookie", "Set-Cookie", "Authorization"
@@ -27,25 +42,27 @@ zuul:
       serviceId: atlas-provider-user
   # 忽略某些路径不进行路由
 #  ignored-patterns: /**/admin/**
-ribbon:
-  # 该参数用来设置路由转发请求的时候，创建请求连接的超时时间。
-  ConnectTimeout: 500
-  # 该参数用来设置路由转发请求的超时时间。
-  ReadTimeout: 2000
-  # 最大自动重试次数
-  MaxAutoRetries: 3
-  # 最大自动重试下一个服务的次数
-  MaxAutoRetriesNextServer: 1
-# 该参数可以用来设置 API 网关中路由转发请求的 HystrixCommand 执行超时时间，单位为毫秒。
-hystrix:
-  command:
-    default:
-      execution:
-        isolation:
-          thread:
-            timeoutinMilliseconds: 5000
-          semaphore:
-            maxConcurrentRequests: 10
-          #隔离策略是SEMAPHORE（信号量）
-          strategy: SEMAPHORE
+
+##############2.0后版本以下不起作用,配置变了
+#ribbon:
+#  # 该参数用来设置路由转发请求的时候，创建请求连接的超时时间。
+#  ConnectTimeout: 500
+#  # 该参数用来设置路由转发请求的超时时间。
+#  ReadTimeout: 2000
+#  # 最大自动重试次数
+#  MaxAutoRetries: 3
+#  # 最大自动重试下一个服务的次数
+#  MaxAutoRetriesNextServer: 1
+## 该参数可以用来设置 API 网关中路由转发请求的 HystrixCommand 执行超时时间，单位为毫秒。
+#hystrix:
+#  command:
+#    default:
+#      execution:
+#        isolation:
+#          thread:
+#            timeoutinMilliseconds: 5000
+#          semaphore:
+#            maxConcurrentRequests: 10
+#          #隔离策略是SEMAPHORE（信号量）
+#          strategy: SEMAPHORE
       

@@ -15,7 +15,7 @@ import tk.mybatis.spring.annotation.MapperScan;
  */
 @EnableDiscoveryClient
 @MapperScan({"com.atlas.user.mapper"})
-@SpringBootApplication(scanBasePackages = {"com.atlas.user.controller","com.atlas.user.service"})
+@SpringBootApplication(scanBasePackages = {"com.atlas.user.controller","com.atlas.user.service","com.atlas.user.config"})
 public class UserProviderApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(UserProviderApplication.class, args);

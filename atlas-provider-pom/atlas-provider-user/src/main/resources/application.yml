@@ -15,6 +15,8 @@ eureka:
     lease-renewal-interval-in-seconds: 30
     #Eureka服务端在收到最后一次心跳之后等待的时间上限，单位为秒，超过则剔除（客户端告诉服务端按照此规则等待自己）
     lease-expiration-duration-in-seconds: 90
+    preferIpAddress : true
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
 spring:
   application:
     name: atlas-provider-user
@@ -51,7 +53,19 @@ spring:
       test-on-return: false
       pool-prepared-statements: true
       max-pool-prepared-statement-per-connection-size: 20
+  boot:
+    admin:
+      client:
+        # 这个URL地址是SBA Server的服务地址，你需要将你的应用注册到该地址上
+        url: http://localhost:9000
+        # 配置连接到监测管理平台的Security安全密码
+        username: admin
+        password: admin
+
       
+# 在默认情况下大多数Actuator的端点并没有完全公开，这里我将所有端点都进行公开进行管理
+management.endpoints.web.exposure.include: "*"
+
 mybatis:
   type-aliases-package: com.atlas.model
   mapper-locations: classpath:mapper/*/*.xml

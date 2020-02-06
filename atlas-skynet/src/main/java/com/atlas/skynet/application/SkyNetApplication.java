@@ -5,9 +5,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
-import org.springframework.context.annotation.Bean;
-
-import com.atlas.skynet.zuul.filter.AccessUserNameFilter;
 
 /**
  * @description 网关服务启动器
@@ -18,7 +15,7 @@ import com.atlas.skynet.zuul.filter.AccessUserNameFilter;
  */
 @EnableZuulProxy
 @EnableDiscoveryClient
-@SpringBootApplication(exclude = DataSourceAutoConfiguration.class )
+@SpringBootApplication(exclude = DataSourceAutoConfiguration.class,scanBasePackages = "com.atlas.skynet.config" )
 public class SkyNetApplication {
     public static void main(String[] args) {
         SpringApplication.run(SkyNetApplication.class, args);

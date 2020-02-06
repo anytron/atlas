@@ -18,7 +18,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableDiscoveryClient
 @EnableFeignClients(basePackages = "com.atlas.client.feign")
 @SpringBootApplication(
-		scanBasePackages = {"com.atlas.client.controller","com.atlas.client.feign"},
+		scanBasePackages = {"com.atlas.client.controller","com.atlas.client.feign","com.atlas.client.config"},
 		exclude = DataSourceAutoConfiguration.class )//忽略数据库启动
 public class ClientApplication {
 	public static void main(String[] args) {

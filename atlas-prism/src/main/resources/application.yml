@@ -1,0 +1,58 @@
+server:
+  port: 9000
+  tomcat:
+    uri-encoding: UTF-8
+
+#服务注册到eureka地址
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://127.0.0.1:9001/eureka
+  instance:
+    preferIpAddress : true
+    instance-id: ${spring.cloud.client.ipAddress}:${server.port}
+    metadata-map:
+      user:
+        name: admin
+        password: admin
+spring:
+  application:
+    name: atlas-prism
+  http:
+#编码配置
+    encoding:
+      force: true
+      charset : UTF-8
+      enabled : true
+  security:
+    user:
+      name: admin
+      password: admin
+  boot:
+    admin:
+      ui:
+        # 修改网页显示的tab标题
+        title: "应用监控管理"
+        # 修改网页的brand的图标和标题
+        brand: "<img src='assets/img/icon-spring-boot-admin.svg'><span>应用监控管理</span>"
+  #宕机邮件提示
+#  boot:
+#    admin:
+#      notify:
+#        mail:
+#          from: '*****'
+#          to: '******'
+#  mail:
+#    host: smtp.126.com
+#    password: '*****'
+#    username: '****' 
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: refresh,health,info,env,loggers,metrics,trace,dump
+   
+management.endpoints.web.exposure.include: "*" 
