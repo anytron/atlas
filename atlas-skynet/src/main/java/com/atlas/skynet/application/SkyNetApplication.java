@@ -24,8 +24,9 @@ public class SkyNetApplication {
         SpringApplication.run(SkyNetApplication.class, args);
     }
     
-    @Bean
-    public AccessUserNameFilter accessUserNameFilter(){
-    	return new AccessUserNameFilter();
-    }
+//方便测试先关闭
+//    @Bean
+//    public AccessUserNameFilter accessUserNameFilter(){
+//    	return new AccessUserNameFilter();
+//    }
 }
