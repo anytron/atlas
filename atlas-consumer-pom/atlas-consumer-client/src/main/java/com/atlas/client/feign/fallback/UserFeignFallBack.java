@@ -2,14 +2,14 @@ package com.atlas.client.feign.fallback;
 
 import java.util.List;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import com.atlas.client.feign.UserFeignClient;
 import com.atlas.model.ErrorCode;
 import com.atlas.model.Result;
 import com.atlas.model.user.User;
 
-@Service
+@Component
 public class UserFeignFallBack implements UserFeignClient {
 
 	

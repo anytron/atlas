@@ -1,10 +1,10 @@
 package com.atlas.client.feign.fallback;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import com.atlas.client.feign.DemoFeignClient;
 
-@Service
+@Component
 public class DemoFeignFallBack implements DemoFeignClient {
 
 	@Override
