@@ -41,5 +41,19 @@ feign:
 logging:
    config: classpath:log4j2.xml
    
-   
-   
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 30000
+  
+  
+  
+  
+  
+  
+  
+  
+  

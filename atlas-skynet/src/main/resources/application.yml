@@ -42,7 +42,7 @@ zuul:
       serviceId: atlas-provider-user
   # 忽略某些路径不进行路由
 #  ignored-patterns: /**/admin/**
-
+ribbon:  eureka:    enabled: true
 ##############2.0后版本以下不起作用,配置变了
 #ribbon:
 #  # 该参数用来设置路由转发请求的时候，创建请求连接的超时时间。
